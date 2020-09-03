@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href='styles/css.css' rel="stylesheet">
+  <link href="styles/vuetify.min.css" rel="stylesheet">
+  <link href="styles/nv.d3.css" rel="stylesheet">
+  <link href="styles/style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+</head>
+<body>
+
+  <div id="simpleApp">
+    <v-app dark>
+      <v-content>
+        <v-container>
+          <v-layout row>
+            <v-flex md7 xs7>
+            <v-btn v-on:click="loadApi" color="primary">LA SOO BAX XOGTA</v-btn>
+          </v-flex>
+          <v-flex md5 xs5>
+            <v-select v-if="apiData"
+          v-bind:items="apiData.nations"
+           v-model="selectedCountry"
+             v-on:change="selectionChanged"
+
+          label="DooroWADDAN"
+        ></v-select>
+      </v-flex>
+
+   </v-layout>
+   <v-responsive v-if="selectedCountry">
+     <table id="playerTable">
+       <tr class="nohover">
+         <th colspan="3">
+         <div>
+         <v-btn v-on:click="toggleFahfahin" color="primary">Fahfahin-dheradAh
+          {{ showFahfahin ? 'DAMI' : 'DAAR' }}</v-btn>
+       </div>
+       </th>
+         <th v-show="showFahfahin">Sano</th>
+         <th v-show="showFahfahin">xirfad</th>
+
+       </tr>
+
+
+
+     <tr v-for="player in apiData.Top_10[selectedCountry]"
+     v-on:click="openPlayerDialog(player)">
+       <td><img v-bind:src="player.Photo"></td>
+       <td> {{ player.Name }}</td>
+       <td><img v-bind:src="player.Club_Logo"></td>
+       <td v-show="showFahfahin"> {{ player.Age }}</td>
+       <td v-show="showFahfahin"> {{ player.Overall }}</td>
+     </tr>
+   </table>
+   </v-responsive>
+        </v-container>
+
+      </v-content>
+      <v-dialog v-model="playerDialog" persistent max-width="600" v-if="selectedPlayer">
+      <v-card>
+        <v-card-title class="headline">
+          <v-toolbar dark color="primary">
+            <v-toolbar-title class="white--text">
+            Warbixinta: {{ selectedPlayer.Name }}
+            </v-toolbar-title>
+          </v-toolbar>
+
+          </v-card-title>
+        <v-card-text>
+          <div id="chart">
+            <svg></svg>
+          </div>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click.native="playerDialog = false">DAMI</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+      <pre>
+
+      </pre>
+    </v-app>
+
+ </div>
+
+
+</body>
+
+
+<script src="Scripts/Framework/vue.js"></script>
+<script src="Scripts/vue-resource@1.5.1.js"></script>
+<script src="Scripts/vuetify.js"></script>
+
+<script src="Scripts/Framework/d3.v3.js"></script>
+<script src="Scripts/Framework/nv.d3.js"></script>
+<script src="Scripts/Framework/charts.js"></script>
+<script ype="text/javascript" charset="UTF-8"src="Scripts/script.js"></script>
+
+</html>
