@@ -12,7 +12,7 @@
          "Overall": 93,
          "Potential": 93,
          "Club": "FC Barcelona",
-         "Club_Logo": "../assets/images/241.png",
+         "Club_Logo": "http://localhost:8000/assets/images/241.png",
          "Value": "1.500.000",
          "Wage": "565.000",
          "Special": 2154,
